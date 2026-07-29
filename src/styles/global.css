@@ -1,0 +1,45 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+/* 1. Register Local Fonts */
+@font-face {
+  font-family: 'Pixeboy';
+  src: url('/fonts/Pixeboy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('/fonts/PixelifySans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('/fonts/PixelifySans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Configure Tailwind v4 Theme Variables */
+@theme {
+  --font-pixeboy: 'Pixeboy', sans-serif;
+  --font-pixelify: 'Pixelify Sans', monospace;
+
+  /* Early Mac OS Palette */
+  --color-mac-bg: #c3d9ea;
+  --color-mac-card: #fbf9f1;
+  --color-mac-yellow: #ffe36d;
+  --color-mac-dark: #121212;
+}
+
+body {
+  font-family: var(--font-pixelify);
+  background-color: var(--color-mac-bg);
+  color: var(--color-mac-dark);
+}

@@ -1,0 +1,109 @@
+---
+import MacWindow from './MacWindow.jsx';
+
+const projects = [
+  {
+    name: "Melomu",
+    pitch: "Personalized cross-platform music player application built with React Native and local SQLite integration.",
+    tech: ["React Native", "Expo", "SQLite", "NativeWind", "TypeScript"],
+    challenges: [
+      "Engineered local SQLite database schema for fast, offline music indexing and local playlist persistence.",
+      "Optimized native audio playback controls across mobile platforms with minimal UI thread latency.",
+      "Migrated styling to NativeWind for seamless component reusability across web and native targets."
+    ],
+    github: "https://github.com/yourusername/Melomu-My-music-app",
+    demo: "#" // Add link if available
+  },
+  {
+    name: "DayLog",
+    pitch: "Minimalist daily reflection and micro-journaling application[cite: 1].",
+    tech: ["React", "Tailwind CSS", "Supabase", "TypeScript"],
+    challenges: [
+      "Architected offline-first sync mechanism using Supabase backend APIs[cite: 1].",
+      "Designed clean, distraction-free UI with smooth CSS transitions without heavy animation libraries[cite: 1].",
+      "Implemented secure user data storage with fine-grained access policies."
+    ],
+    github: "https://github.com/yourusername/daylog",
+    demo: "#"
+  },
+  {
+    name: "Pixel OS Portfolio",
+    pitch: "Susan Kare-inspired retro Macintosh longread portfolio website[cite: 1].",
+    tech: ["Astro", "React", "Tailwind v4", "TypeScript"],
+    challenges: [
+      "Leveraged Astro Islands architecture to static-render layout while isolating interactive window components[cite: 1].",
+      "Configured custom `@font-face` pixel typography and Tailwind v4 theme CSS variables[cite: 1].",
+      "Maintained fast initial load times and high Lighthouse performance scores across devices[cite: 1]."
+    ],
+    github: "https://github.com/yourusername/my-portfolio",
+    demo: "#"
+  }
+];
+---
+
+<section id="projects" class="my-12">
+  <div class="mb-6 flex justify-between items-end border-b-2 border-black pb-2">
+    <h2 class="font-pixeboy text-3xl uppercase tracking-wide">
+      FEATURED PROJECTS[cite: 1]
+    </h2>
+    <span class="font-pixelify text-xs text-gray-700 hidden sm:inline">
+      [3 Apps Loaded]
+    </span>
+  </div>
+
+  <div class="space-y-8">
+    {projects.map((project) => (
+      <MacWindow title={`${project.name}.app`} client:visible>
+        <div class="space-y-4 font-pixelify">
+          <!-- Pitch -->
+          <p class="text-base font-bold text-black">
+            {project.pitch}
+          </p>
+          
+          <!-- Tech Pills -->
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <span class="bg-[var(--color-mac-dark)] text-white text-xs px-2.5 py-0.5 rounded-full font-mono">
+                {t}
+              </span>
+            ))}
+          </div>
+
+          <!-- Technical Highlights -->
+          <div class="border-t border-black pt-3 mt-3">
+            <p class="font-pixeboy text-sm mb-2 text-gray-800 tracking-wide">
+              TECHNICAL DECISIONS & CHALLENGES SOLVED:[cite: 1]
+            </p>
+            <ul class="list-disc list-inside text-xs font-mono space-y-1.5 text-gray-800 leading-relaxed">
+              {project.challenges.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Action Links -->
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a 
+              href={project.github} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="border-2 border-black bg-white px-3 py-1.5 text-xs font-pixelify font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-colors"
+            >
+              SOURCE CODE[cite: 1]
+            </a>
+            {project.demo !== "#" && (
+              <a 
+                href={project.demo} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="border-2 border-black bg-[var(--color-mac-yellow)] px-3 py-1.5 text-xs font-pixelify font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-colors"
+              >
+                LIVE DEMO[cite: 1]
+              </a>
+            )}
+          </div>
+        </div>
+      </MacWindow>
+    ))}
+  </div>
+</section>
