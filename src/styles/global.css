@@ -1,7 +1,15 @@
-/* src/styles/global.css */
 @import "tailwindcss";
 
-/* 1. Register Local Fonts */
+@theme {
+  --color-cream: #FDFBEE;
+  --color-sky: #7FB9E6;
+  --color-lavender: #D6BEEA;
+  --color-butter: #F4D77A;
+  --color-matcha: #B7C96A;
+  --color-pink: #F98BA9;
+  --color-tangerine: #FF8F45;
+}
+
 @font-face {
   font-family: 'Pixeboy';
   src: url('/fonts/Pixeboy.ttf') format('truetype');
@@ -26,20 +34,4 @@
   font-display: swap;
 }
 
-/* 2. Configure Tailwind v4 Theme Variables */
-@theme {
-  --font-pixeboy: 'Pixeboy', sans-serif;
-  --font-pixelify: 'Pixelify Sans', monospace;
 
-  /* Early Mac OS Palette */
-  --color-mac-bg: #c3d9ea;
-  --color-mac-card: #fbf9f1;
-  --color-mac-yellow: #ffe36d;
-  --color-mac-dark: #121212;
-}
-
-body {
-  font-family: var(--font-pixelify);
-  background-color: var(--color-mac-bg);
-  color: var(--color-mac-dark);
-}
