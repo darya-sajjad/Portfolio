@@ -7,10 +7,11 @@ const projects = [
     description: "Melomu is an offline music player built with Expo and React Native. Import your own audio files, organize library, browse by song/album/artist, & build playlists — all backed by a local SQLite database, with synced lyrics cached for offline use.",
     tags: ["Expo", "React Native", "TypeScript", "SQLite", "Offline-first"],
     github: "https://github.com/darya-sajjad/Melomu",
-    thumbnail: "/projects/melomu-thumb.jpg",
+    thumbnail: "/Melomu.png",
     demoTitle: "Melomu App Demo",
-    demoDescription: "Full local music library playback, offline synced lyrics rendering, and custom SQLite database management in action.",
-    demoMediaUrl: "/projects/melomu-demo.mp4"
+    demoMedia: [
+      "/Melomu.mp4"
+    ]
   },
   {
     id: "portfolio",
@@ -19,23 +20,12 @@ const projects = [
     description: "Challenging myself to step outside my native mobile comfort zone, I developed a personal branding platform to showcase my engineering ecosystem and transition from native mobile development into modern web architecture.",
     tags: ["Astro", "TypeScript", "Tailwind CSS", "Web development"],
     github: "https://github.com/darya-sajjad/Portfolio",
-    thumbnail: "/projects/portfolio-thumb.jpg",
+    thumbnail: "/Portfolio.png",
     demoTitle: "Portfolio Site Preview",
-    demoDescription: "Interactive retro bento grid layouts, responsive CSS styling, and custom Astro static build performance.",
-    demoMediaUrl: "/projects/portfolio-demo.png"
+    demoMedia: [
+      "/PorfolioDemo.png"
+    ]
   },
-  {
-    id: "spotify-controller",
-    title: "Spotify Controller",
-    subtitle: "Mini electron desktop widget",
-    description: "A cute, tiny frameless Electron widget that displays and controls your currently playing Spotify track — cover art, scrolling title, seekable progress bar, and playback controls, right on your desktop.",
-    tags: ["Electron", "JavaScript", "CSS", "OAuth2"],
-    github: "https://github.com/darya-sajjad",
-    thumbnail: "/projects/spotify-thumb.jpg",
-    demoTitle: "Spotify Desktop Widget Demo",
-    demoDescription: "Frameless Electron window floating on desktop with real-time Spotify API OAuth token polling and playback control.",
-    demoMediaUrl: "/projects/spotify-demo.png"
-  }
 ];
 ---
 
@@ -44,14 +34,12 @@ const projects = [
   {/* Header Row: "My Projects" Pill + Pagination Controls */}
   <div class="flex items-center justify-between mb-5 sm:mb-6">
     
-    {/* Static Title Pill Button */}
     <div class="bg-lavender border-2 border-black px-4 py-1.5 sm:px-5 sm:py-2 rounded-2xl shadow-[2.5px_2.5px_0px_0px_rgba(0,0,0,1)] -rotate-1">
       <h2 class="text-sm sm:text-base font-extrabold text-black uppercase tracking-wide">
         My Projects
       </h2>
     </div>
 
-    {/* Navigation Prev / Next Buttons */}
     <div class="flex items-center gap-2">
       <button 
         id="prev-grid-btn"
@@ -71,25 +59,23 @@ const projects = [
 
   </div>
 
-  {/* 2x2 Desktop / 1x2 Mobile Grid Container */}
+  {/* Projects Grid Container */}
   <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 min-h-[400px]">
     {projects.map((project) => (
       <div 
         class="project-card bg-white border-2 border-black rounded-2xl p-4 sm:p-5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between hidden"
         data-id={project.id}
       >
-        {/* Top Content */}
         <div>
-          {/* Compact Colored Frame Thumbnail Container */}
+          {/* Card Thumbnail */}
           <div class="bg-pink border-2 border-black rounded-xl p-1.5 mb-3 shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
-            <div class="h-32 sm:h-40 bg-cream border border-black rounded-lg overflow-hidden flex items-center justify-center relative">
+            <div class="h-42 sm:h-42 bg-cream border border-black rounded-lg overflow-hidden flex items-center justify-center relative">
               <img 
                 src={project.thumbnail} 
                 alt={project.title}
                 class="w-full h-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
               />
-              {/* Fallback image placeholder */}
               <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-butter/40 to-pink/40 p-3 text-center hidden">
                 <span class="text-xl mb-1">🖼️</span>
                 <span class="text-[10px] font-bold text-black/60 uppercase">{project.title}</span>
@@ -97,7 +83,6 @@ const projects = [
             </div>
           </div>
 
-          {/* Title & Subtitle */}
           <div class="mb-1.5">
             <h3 class="text-base sm:text-lg font-black text-black tracking-tight leading-snug">
               {project.title}
@@ -107,12 +92,10 @@ const projects = [
             </p>
           </div>
 
-          {/* Description */}
           <p class="text-xs text-black/80 font-medium leading-relaxed mb-3">
             {project.description}
           </p>
 
-          {/* Tag Badges */}
           <div class="flex flex-wrap gap-1.5 mb-4">
             {project.tags.map(tag => (
               <span class="bg-cream border border-black px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
@@ -122,7 +105,6 @@ const projects = [
           </div>
         </div>
 
-        {/* Bottom Actions */}
         <div class="flex items-center gap-2 pt-3 border-t border-dashed border-black/20">
           <a 
             href={project.github}
@@ -137,8 +119,7 @@ const projects = [
             type="button"
             class="open-demo-btn flex-1 text-center bg-sky border-2 border-black py-1.5 rounded-xl text-xs font-extrabold text-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hover:bg-matcha active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
             data-title={project.demoTitle}
-            data-description={project.demoDescription}
-            data-media={project.demoMediaUrl}
+            data-media={JSON.stringify(project.demoMedia)}
           >
             View Demo &rarr;
           </button>
@@ -148,18 +129,18 @@ const projects = [
     ))}
   </div>
 
-  {/* Dynamic Page Dots */}
   <div id="grid-dots-container" class="flex justify-center items-center gap-2 mt-6"></div>
 
 </section>
 
-{/* --- DEMO POPUP MODAL --- */}
+{/* --- MULTI-MEDIA DEMO POPUP MODAL --- */}
 <div 
   id="demo-modal" 
-  class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 hidden transition-opacity"
+  class="fixed inset-0 z-50 bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 hidden transition-opacity"
 >
-  <div class="bg-white border-2 sm:border-3 border-black rounded-3xl p-4 sm:p-6 max-w-xl w-full shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative">
+  <div class="bg-white border-2 sm:border-3 border-black rounded-3xl p-4 sm:p-6 max-w-2xl w-full shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative flex flex-col">
     
+    {/* Modal Header */}
     <div class="flex items-center justify-between mb-3 border-b-2 border-black pb-2.5">
       <div>
         <span class="bg-pink border border-black px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider mb-0.5 inline-block">
@@ -172,24 +153,56 @@ const projects = [
       
       <button 
         id="close-modal-btn"
-        class="bg-cream border-2 border-black w-7 h-7 rounded-lg font-black text-sm flex items-center justify-center hover:bg-pink shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+        class="bg-cream border-2 border-black w-8 h-8 rounded-xl font-black text-base flex items-center justify-center hover:bg-pink shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
       >
         &times;
       </button>
     </div>
 
-    <div class="bg-cream border-2 border-black rounded-xl overflow-hidden mb-3 aspect-video flex items-center justify-center relative">
-      <div id="modal-media-content" class="w-full h-full flex flex-col items-center justify-center p-4 text-center">
-        <span class="text-3xl mb-1">📹</span>
-        <p class="text-xs font-extrabold text-black">Visual Preview Space</p>
-        <p class="text-[11px] text-black/60 mt-0.5">Place demo assets in <code class="bg-black/10 px-1 rounded">public/projects/</code> to display live previews here!</p>
+    {/* Media Viewer Frame (Flexible height with object-contain to preserve mobile proportions) */}
+    <div class="bg-black/95 border-2 border-black rounded-2xl overflow-hidden mb-3 h-[380px] sm:h-[460px] flex items-center justify-center relative shadow-[inset_0px_2px_4px_rgba(0,0,0,0.5)]">
+      
+      {/* Active Media Slot */}
+      <div id="modal-media-content" class="w-full h-full flex items-center justify-center p-2">
+        {/* Dynamic Image or Video rendered via JS */}
+      </div>
+
+      {/* Carousel Prev Button */}
+      <button 
+        id="modal-prev-media"
+        aria-label="Previous Media"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 border-2 border-black w-8 h-8 rounded-full font-black text-xs flex items-center justify-center shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hover:bg-pink active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer hidden"
+      >
+        &lt;
+      </button>
+
+      {/* Carousel Next Button */}
+      <button 
+        id="modal-next-media"
+        aria-label="Next Media"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 border-2 border-black w-8 h-8 rounded-full font-black text-xs flex items-center justify-center shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hover:bg-pink active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer hidden"
+      >
+        &gt;
+      </button>
+
+      {/* Carousel Slide Counter Badge */}
+      <div 
+        id="modal-media-counter" 
+        class="absolute bottom-2.5 right-2.5 bg-black/80 border border-white/30 text-white text-[10px] font-black px-2.5 py-0.5 rounded-lg backdrop-blur-xs hidden"
+      >
+        1 / 1
       </div>
     </div>
+
+    {/* Modal Description */}
+    <p id="modal-description" class="text-xs font-medium text-black/80 leading-relaxed mb-4">
+      Project walkthrough description.
+    </p>
 
   </div>
 </div>
 
-{/* Client Logic: Responsive Pagination & Modal */}
+{/* Client Logic */}
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 0;
@@ -221,7 +234,6 @@ const projects = [
         }
       });
 
-      // Update dots indicator
       if (dotsContainer) {
         dotsContainer.innerHTML = '';
         if (totalPages > 1) {
@@ -259,28 +271,98 @@ const projects = [
     window.addEventListener('resize', updatePagination);
     updatePagination();
 
-    // Modal Logic
+    // --- Dynamic Modal Media Carousel Logic ---
     const modal = document.getElementById('demo-modal');
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
+    const modalMediaContent = document.getElementById('modal-media-content');
+    const modalPrevMedia = document.getElementById('modal-prev-media') as HTMLButtonElement;
+    const modalNextMedia = document.getElementById('modal-next-media') as HTMLButtonElement;
+    const modalMediaCounter = document.getElementById('modal-media-counter');
+    
     const closeModalBtn = document.getElementById('close-modal-btn');
     const modalDoneBtn = document.getElementById('modal-done-btn');
     const openDemoBtns = document.querySelectorAll('.open-demo-btn');
+
+    let activeMediaList: string[] = [];
+    let activeMediaIndex = 0;
+
+    function renderCurrentMedia() {
+      if (!modalMediaContent || activeMediaList.length === 0) return;
+
+      const mediaUrl = activeMediaList[activeMediaIndex];
+
+      // Render video or image with object-contain to preserve full aspect ratio
+      if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
+        modalMediaContent.innerHTML = `
+          <video src="${mediaUrl}" controls autoplay loop muted class="max-w-full max-h-full object-contain rounded-lg shadow-md"></video>
+        `;
+      } else {
+        modalMediaContent.innerHTML = `
+          <img src="${mediaUrl}" alt="Project preview slide" class="max-w-full max-h-full object-contain rounded-lg shadow-md" />
+        `;
+      }
+
+      // Update Carousel Controls & Counter
+      if (activeMediaList.length > 1) {
+        modalPrevMedia?.classList.remove('hidden');
+        modalNextMedia?.classList.remove('hidden');
+        modalMediaCounter?.classList.remove('hidden');
+        if (modalMediaCounter) {
+          modalMediaCounter.textContent = `${activeMediaIndex + 1} / ${activeMediaList.length}`;
+        }
+      } else {
+        modalPrevMedia?.classList.add('hidden');
+        modalNextMedia?.classList.add('hidden');
+        modalMediaCounter?.classList.add('hidden');
+      }
+    }
 
     openDemoBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const target = e.currentTarget as HTMLElement;
         const title = target.getAttribute('data-title') || 'Project Demo';
         const description = target.getAttribute('data-description') || '';
+        const rawMedia = target.getAttribute('data-media') || '[]';
+
+        try {
+          activeMediaList = JSON.parse(rawMedia);
+        } catch {
+          activeMediaList = [];
+        }
+
+        activeMediaIndex = 0;
 
         if (modalTitle) modalTitle.textContent = title;
         if (modalDescription) modalDescription.textContent = description;
 
+        renderCurrentMedia();
         modal?.classList.remove('hidden');
       });
     });
 
-    const closeModal = () => modal?.classList.add('hidden');
+    // Media Navigation Buttons
+    modalPrevMedia?.addEventListener('click', () => {
+      if (activeMediaList.length > 1) {
+        activeMediaIndex = (activeMediaIndex - 1 + activeMediaList.length) % activeMediaList.length;
+        renderCurrentMedia();
+      }
+    });
+
+    modalNextMedia?.addEventListener('click', () => {
+      if (activeMediaList.length > 1) {
+        activeMediaIndex = (activeMediaIndex + 1) % activeMediaList.length;
+        renderCurrentMedia();
+      }
+    });
+
+    const closeModal = () => {
+      modal?.classList.add('hidden');
+      if (modalMediaContent) modalMediaContent.innerHTML = '';
+      activeMediaList = [];
+      activeMediaIndex = 0;
+    };
+
     closeModalBtn?.addEventListener('click', closeModal);
     modalDoneBtn?.addEventListener('click', closeModal);
     modal?.addEventListener('click', (e) => {
